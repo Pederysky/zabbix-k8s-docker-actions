@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  zabbix-web:
+    build: ./docker
+    environment:
+      - DB_SERVER_HOST=mysql-server
+      - MYSQL_USER=zabbix
+      - MYSQL_PASSWORD=zabbix
+      - ZBX_SERVER_HOST=zabbix-server
+      - PHP_TZ=Europe/Madrid
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: zabbix
+      MYSQL_DATABASE: zabbix
+      MYSQL_USER: zabbix
+      MYSQL_PASSWORD: zabbix
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data:
