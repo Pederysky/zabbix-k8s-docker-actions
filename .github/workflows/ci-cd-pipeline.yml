@@ -1,4 +1,4 @@
-name: Zabbix-Nginx-MySQL
+name: Zabbix-Nginx-MySQL-Kubernetes
 
 on:
   push:
@@ -47,4 +47,3 @@ jobs:
         kubectl apply -f kubernetes/zabbix-service.yml
         kubectl apply -f kubernetes/mysql-deployment.yml
         kubectl apply -f kubernetes/mysql-service.yml
-
